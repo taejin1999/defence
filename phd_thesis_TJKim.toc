@@ -1,0 +1,40 @@
+\contentsline {chapter}{\numberline {I}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Motivation}{1}
+\contentsline {section}{\numberline {1.2}Dissertation Goals}{3}
+\contentsline {section}{\numberline {1.3}Contributions}{4}
+\contentsline {section}{\numberline {1.4}Dissertation Structure}{5}
+\contentsline {chapter}{\numberline {II}Related Work}{6}
+\contentsline {section}{\numberline {2.1}Data Separation Techniques for Multi-streamed SSDs}{6}
+\contentsline {section}{\numberline {2.2}Write Traffic Reduction Techniques}{7}
+\contentsline {chapter}{\numberline {III}Automatic Stream Allocation Using Program Contexts}{12}
+\contentsline {section}{\numberline {3.1}Motivation}{12}
+\contentsline {subsection}{\numberline {3.1.1}Fallacy: LBA-based lifetime prediction}{12}
+\contentsline {subsection}{\numberline {3.1.2}Program context as a lifetime predictor}{14}
+\contentsline {section}{\numberline {3.2}Design of \textsf {PCStream}}{16}
+\contentsline {subsection}{\numberline {3.2.1}Automatic PC computation}{17}
+\contentsline {subsection}{\numberline {3.2.2}PC lifetime prediction}{19}
+\contentsline {subsection}{\numberline {3.2.3}Mapping PCs to SSD streams}{20}
+\contentsline {subsection}{\numberline {3.2.4}Two-phase stream assignment}{20}
+\contentsline {section}{\numberline {3.3}Experimental Results}{23}
+\contentsline {subsection}{\numberline {3.3.1}Experiments with an SSD emulator}{23}
+\contentsline {subsection}{\numberline {3.3.2}Experiments with a real-world SSD}{26}
+\contentsline {chapter}{\numberline {IV}Fine-grained Deduplication Technique}{27}
+\contentsline {section}{\numberline {4.1}Motivations}{27}
+\contentsline {section}{\numberline {4.2}Fine-Grained Deduplication}{30}
+\contentsline {subsection}{\numberline {4.2.1}Overall Architecture of FineDedup}{30}
+\contentsline {subsection}{\numberline {4.2.2}Read Overhead Management}{33}
+\contentsline {subsection}{\numberline {4.2.3}Memory Overhead Management}{37}
+\contentsline {section}{\numberline {4.3}Experimental Results}{39}
+\contentsline {subsection}{\numberline {4.3.1}Experimental Settings}{39}
+\contentsline {subsection}{\numberline {4.3.2}Effectiveness of FineDedup}{40}
+\contentsline {subsection}{\numberline {4.3.3}Read Overhead Evaluation}{42}
+\contentsline {subsection}{\numberline {4.3.4}Memory Overhead Evaluation}{43}
+\contentsline {subsection}{\numberline {4.3.5}Evaluation of the Effectiveness of Cached Mapping Table for Mixed Workloads}{45}
+\contentsline {subsection}{\numberline {4.3.6}Evaluation of the Effectiveness of the Chunk Read Buffer}{46}
+\contentsline {subsection}{\numberline {4.3.7}Sensitivity Study on Chunk Read Buffer Size}{47}
+\contentsline {subsection}{\numberline {4.3.8}Sensitivity Study on Chunk Buffer Size}{48}
+\contentsline {chapter}{\numberline {V}Conclusions}{50}
+\contentsline {section}{\numberline {5.1}Summary and Conclusions}{50}
+\contentsline {section}{\numberline {5.2}Future Work}{51}
+\contentsline {subsection}{\numberline {5.2.1}Improving stream mapping method of PCStream}{51}
+\contentsline {chapter}{Bibliography}{52}

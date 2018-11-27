@@ -1,0 +1,41 @@
+\addvspace {0\p@ }
+\addvspace {0\p@ }
+\addvspace {0\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Lifetime distributions over addresses and times.}}{13}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Lifetime patterns over LBAs}}}{13}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Lifetime patterns over time}}}{13}
+\contentsline {figure}{\numberline {2}{\ignorespaces Data lifetime distributions of different PCs.}}{15}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Logging (PC)}}}{15}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Logging (manual)}}}{15}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Flushing (PC)}}}{15}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Flushing (manual)}}}{15}
+\contentsline {figure}{\numberline {3}{\ignorespaces An overall architecture of \textsf {\relax \fontsize {10}{12}\selectfont \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip PCStream}.}}{18}
+\contentsline {figure}{\numberline {4}{\ignorespaces An example execution path and its PC extraction.}}{19}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {An abstracted execution path for flushing data.}}}{19}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {with the frame pointer.}}}{19}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {without the frame pointer.}}}{19}
+\contentsline {figure}{\numberline {5}{\ignorespaces Lifetime distributions of the compaction activity at different levels.}}{22}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {compaction: all levels}}}{22}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {compaction: L2}}}{22}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {compaction: L3}}}{22}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {compaction: L4}}}{22}
+\contentsline {figure}{\numberline {6}{\ignorespaces A comparison of WAF on the SSD emulator.}}{24}
+\contentsline {figure}{\numberline {7}{\ignorespaces A comparison of per-stream lifetime distributions.}}{25}
+\contentsline {figure}{\numberline {8}{\ignorespaces A comparison of WAF on Samsung PM963 SSD.}}{26}
+\addvspace {0\p@ }
+\contentsline {figure}{\numberline {9}{\ignorespaces The percentage of pages according to their partial duplicate patterns.}}{28}
+\contentsline {figure}{\numberline {10}{\ignorespaces The amount of written data under varying chunk sizes in \texttt {PC} workload.}}{29}
+\contentsline {figure}{\numberline {11}{\ignorespaces An overview of the proposed FineDedup technique.}}{32}
+\contentsline {figure}{\numberline {12}{\ignorespaces Data fragmentation caused by FineDedup.}}{34}
+\contentsline {figure}{\numberline {13}{\ignorespaces A packing scheme in the \textit {chunk buffer}.}}{35}
+\contentsline {figure}{\numberline {14}{\ignorespaces An overview of the demand-based hybrid mapping table.}}{38}
+\contentsline {figure}{\numberline {15}{\ignorespaces The amount of written data under various schemes.}}{41}
+\contentsline {figure}{\numberline {16}{\ignorespaces The number of page read operations.}}{42}
+\contentsline {figure}{\numberline {17}{\ignorespaces The effectiveness of the demand-based hybrid mapping table in FineDedup with various cache sizes.}}{44}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Hit ratio of SMT cache}}}{44}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Extra data written due to SMT cache evictions}}}{44}
+\contentsline {figure}{\numberline {18}{\ignorespaces The amount of extra written data due to mapping table eviction for the mixed workload.}}{45}
+\contentsline {figure}{\numberline {19}{\ignorespaces The number of page reads with and without read buffer.}}{46}
+\contentsline {figure}{\numberline {20}{\ignorespaces The number of page read operations under varying chunk read buffer sizes.}}{47}
+\contentsline {figure}{\numberline {21}{\ignorespaces The number of page read operations under varying chunk buffer sizes.}}{48}
+\addvspace {0\p@ }

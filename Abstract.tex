@@ -10,26 +10,25 @@ is emerging as one of the major barriers to the wide adoption of SSDs in high-pe
 In this dissertation, system-level lifetime improvement techniques for
 recent high-density NAND flash memory are proposed.
 Unlike existing techniques, the proposed techniques resolve the
-problems of decreasing lifetime by exploiting the system-level information,
-such as context of I/O or potential duplicate data contents.
+problems of decreasing lifetime by exploiting the
+I/O context of an application to analyze data lifetime patterns or duplicate data
+contents patterns.
 
 We first propose a system-level approach to reduce WAF that exploits
 the I/O context of an application to increase the data lifetime prediction
 for the multi-streamed SSDs. 
-Since the key motivation behind the proposed technqiue was 
-that data lifetimes should be estimated at a higher abstraction level than LBAs, 
-we employ a write program context as a stream management unit.
-Thus, it can effectively separate data with
-short lifetimes from data with long lifetimes to improve the efficiency of garbage collection.
+The key motivation behind the proposed technique was that
+data lifetimes should be estimated at a higher abstraction level than LBAs, so we
+employ a write program context as a stream management unit. Thus, it can
+effectively separate data with short lifetimes from data with long lifetimes to improve
+the efficiency of garbage collection.
 
-Second, we present a write traffic reduction approach which reduces the amount of
-write traffic sent to a storage by eliminating redundant data, therby improving
-the lifetime of storage devices. 
-In particular, we improve the likelihood of eliminating redundant data
-by introducing sub-page chunk based on the understanding of duplicate contents
-such as partial updates or zero padding of file system.
-It also resolves technical difficulties caused by its finer granularity, i.e., increased memory requirement and read
-response time. 
+Second, we present a write traffic reduction approach which improves the likelihood
+of eliminating redundant data by introducing sub-page chunk for partial updates or
+partial sortings. Based on the data contents pattern analysis, we can avoid
+unnecessary deduplication work by employing a write program context as a unit of
+selective deduplication. It also resolves technical difficulties caused by its finer
+granularity, i.e., increased memory requirement and read response time.
 
 In order to evaluate the effectiveness of the proposed techniques, we performed 
 a series of evaluations using both a trace-driven simulator and emulator with I/O

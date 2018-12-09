@@ -1,13 +1,133 @@
-
-\chapter{Related Work} 
+\chapter{Background}
 \label{chap:Background}
 
-\section{Data Separation Techniques for Multi-streamed SSDs}
-Research exists to detect data temperature. Park, et al. uses multiple bloom
-filters to identify hot data in the device layer. Stoica, et
-al. propose new data placement algorithms to improves
+
+\section{NAND Flash Memory System Software}
+In order to overcome the physical limitations of NAND flash memory,
+such as the {\it erase-before-write} restriction and the limited P/E cycles,
+a special software layer, called a {\it flash translation layer} (FTL), is usually
+used in NAND flash memory-based storage systems~\cite{FTL}.
+The FTL emulates a normal block device on top of NAND flash memory, thus enabling 
+users to use NAND flash memory as if they use block device such as hard disk drives.
+The FTL is charge of address mapping, garbage collection, and wear-leveling.
+The address mapping function maps a logical block address (LBA) from a host system
+to a physical block address (PBA) in NAND flash memory. 
+When an update request occurs, the FTL newly allocates a new free page to the request
+in NAND flash memory. This update process is called out-place update. 
+The location information of the newly allocated page are maintained in the page mapping table
+which keeps track of mapping information between LBA and PBA. The old versions of newly written
+data remain invalid in the original location. In order to maintain free space in NAND flash memory,
+The FTL has to perform a garbage collection process which reclaims the invalid pages in NAND
+flash memory. Finally, the wear-leveling procedure induces all blocks in NAND flash memory 
+to be evenly erased, thus preventing frequently erased blocks from being repidly worn out
+than other blocks.
+
+
+\section{NAND Flash-Based Storage Devices}
+Theoretically, a NAND flash chip with an 8-bit serial bus provides only 40 MB/s for reads
+and 13 MB/s for writes. This means that the bandwidth of a single flash chip is seriously 
+limited. Moreover, this performance is further reduced with MLC NAND flash memory. 
+In order to overcome the limited performance of a single flash chip, flash-based storage 
+devices utilize the parallelism of multiple NAND flash chips.
+
+\begin{figure*}[b]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figure/background/ssd_arch}
+	\caption{A simplified diagram of typical SSD.}
+	\label{fig:ssd_arch}
+\end{figure*}
+
+Figure~\ref{fig:ssd_arch} shows a simplified diagram of typical NAND flash-based storage
+devices, consisting of a processor, flash controller, several flash memory packages, and
+host interface logic. The FTL running on the processor receives host commands (e.g., reads
+and writes) through the host interface module from the host system, and then issues several
+flash I/O commands to the flash controller. The flash controller handles multiple I/O commands
+simultaneously. Thus, it is possible to achieve much higher performance than utilizing
+a single NAND flash chip, providing the aggregate bandwidth of multiple flash chips
+with the host system.
+
+\section{Multi-stream Interface}
+At the heart of the garbage collection problems of SSD are the issues of
+how to predict the lifetime of data written to the SSD and
+how to ensure that data with similar lifetime are placed in
+the same erase unit. Kang et. al.~\cite{MultiStream}, proposed multi-streaming,
+an interface that directly guides data placement within
+the SSD, separating the two issues. Authors argue that the
+host system should (and can) provide adequate information
+about data lifetime to the SSD. It is the responsibility
+of the SSD, then, to place data with similar lifetime (as
+dictated by the host system) into the same erase unit.
+
+The design introduces the concept of stream. A stream
+is an abstraction of SSD capacity allocation that stores a
+set of data with the same lifetime expectancy. An SSD
+that implements the proposed multi-stream interface allows
+the host system to open or close streams and write to
+one of them. Before writing data, the host system opens
+streams (through special SSD commands) as needed.
+Both the host system and the SSD share a unique stream
+ID for each open stream, and the host system augments
+each write with a proper stream ID. A multi-streamed
+SSD allocates physical capacity carefully, to place data
+in a stream together and not to mix data from different
+streams.
+
+
+Figure~\ref{fig:multistream} shows the example of block allocation with and without
+multi-stream. Without Multi-stream, data are written in the order in which 
+they are received. As a result, different lifetimes of data are mixed in the same block.
+It incurs high valid page copy overhead for garbage collection due to the different 
+invalidation time.
+However, with Multi-stream, data with same lifetime are separated in a different block
+so that they are likely to be invalidated together that results low garbage collection overhead.
+In order to maximize the effect of the multi-streamed SSD, identifying similar lifetime data
+is the most important and difficult.
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figure/background/multistream}
+	\caption{Block allocation with and without multi-stream.}
+	\label{fig:multistream}
+\end{figure*}
+
+
+\section{Inline Data Deduplication Technique}
+Inline deduplication saves the lifetime of SSDs more than
+offline deduplication~\cite{InlineDedup}. The lifetime of SSD flash cells is limited to a
+specified small number of writes and block erasures (e.g., around
+5,000 times in MLC SSD). Inline deduplication minimizes the number
+of writes to the SSDs by writing only unique data blocks. However,
+offline deduplication requires writing all duplicate and unique blocks
+to the SSDs first. Then during the idle time, stored data are read, and
+the unique ones are written back to respective SSDs.
+
+Inline data deduplication typically consists of four steps. First, the
+deduplication module receives a write request with data ($Data_a$)
+and logical block address ($LBA_a$). Second, $Data_a$ are chunked into
+fixed-sized blocks or variable-sized blocks. In this dissertation, we use
+fixed-sized chunking which has a lower CPU utilization requirement
+and has been commercially used in primary storage~\cite{InlineDedup}.
+Third, the module calculates a signature ($Sig_a$) for the data. Fourth,
+the module looks up $Sig_a$ in the deduplication tables. If the
+signature matches another signature ($Sig_b$) that was already stored
+in the deduplication tables, the received write request is considered
+duplicate ($Data_a = Data_b$). Then Dataa will not be written to the
+storage devices and the module only updates the deduplication
+tables. The update includes recording a mapping from $LBA_a$ to the
+physical block address ($PBA_b$) of the matched signature. For cases
+that step four cannot find $Sig_a$ in the table, the write request is considered
+unique. Therefore, in addition to updating the deduplication
+tables, $Data_a$ are written to the storage devices.
+%A Scalable HW-Based Inline Deduplication for SSD Arrays
+
+\section{Related Work} 
+\subsection{Data Separation Techniques for Multi-streamed SSDs}
+There are several research for detecting data temperature. Park, et al.~\cite{multibloom} 
+uses multiple bloom
+filters to identify hot data in the device layer. Stoica, et al.~\cite{updatefreq}
+propose new data placement algorithms to improves
 flash write performance by estimating data update frequencies.
-Luo, et al. observe high temporal write
+Luo, et al.~\cite{writehot} observe high temporal write
 locality in different workloads and design a write-hotness
 aware retention management policy to improve flash memory
 life time. Most research is on a simulation or mathematical
@@ -20,35 +140,50 @@ and separate them to multiple levels (usually more
 than three levels - hot, cold and warm) to fully utilize such
 devices.
 
-In order to achieve high performance on multi-streamed SSDs, data with similar 
-{\it future} update times~\cite{PCHa}
-should be allocated 
-to the same stream, so that the copy cost of GC can be minimized.
-However, since it is difficult to know the future update times {\it a priori} when they are written,
-stream allocation decisions are often {\it manually} made 
-by programmers based on their expertise
-on the application~\cite{MultiStream, Level} or the file system~\cite{FStream}.  
-Furthermore, these manual techniques assume 
-that the number of streams in an SSD is not changing, 
-thus requiring manual modifications whenever the number of streams in the SSD changes.
+There have been many studies for multi-streamed SSDs ~\cite{MultiStream, Level,
+vStream, FStream, AutoStream, PCStream}.  Kang {\it et al.} first proposed a
+multi-streamed SSD that supported manual stream allocation for separating
+different types of data~\cite{MultiStream}.  Yang {\it et al.} showed that a
+multi-streamed SSD was effective for separating data of append-only
+applications like RocksDB~\cite{Level}.  Yong {\it et al.} presented a virtual
+stream management technique that allows logical streams, not physical streams,
+to be allocated by applications.  Unlike these studies that involve modifying
+the source code of target programs, \textsf{\small PCStream} automates the
+stream allocation with no manual code modification.
 
-To the best of our knowledge, \textsf{\small AutoStream}~\cite{AutoStream} is the only automatic 
-stream management technique
-without additional manual work.  
-However, since \textsf{\small AutoStream} predicts data lifetimes using the update frequency 
-of the logical block address (LBA), it does not work well with modern append-only workloads 
-such as RocksDB~\cite{RocksDB} or Cassandra~\cite{Cassandra}.  
-Unlike conventional update workloads where data written to the same LBAs 
-often show strong update locality, 
-append-only workloads make it impossible to predict data lifetimes 
-from LBA characteristics (such as access frequency or access patterns).  
-For example, as shown in Fig.~\ref{fig:lba_lifetime}(b), 
-data written to a fixed LBA range over time in RocksDB 
-show widely varying data lifetimes, 
-thus making it difficult to allocate streams based on LBA characteristics.
+Rho {\it et al.} proposed a stream management technique, called FStream, at the
+file system layer~\cite{FStream}. In FStream, metadata, journal
+data, and user data that may have different lifetime characteristics were
+allocated to separate streams.  Since FStream was implemented as a part of a file
+system, it was not able to directly detect application's I/O behaviors.
+Also, it may be hard to be deployed in practice due to 
+a strong dependence on file system-specific implementation details.
+\textsf{\small PCStream}, on the other hand, efficiently exploits
+programs' I/O behaviors using PCs with no file system-specific modifications.
+
+Yang {\it et al.} presented an automatic stream management technique at the
+block device layer~\cite{AutoStream}. Similar to hot-cold data separation
+technique used in FTLs, it approximates the data lifetime of data based on
+update frequencies of LBAs.  The applicability of this technique is, however,
+quite limited to in-place update workloads only.  \textsf{\small PCStream} has
+no such limitation on the workload characteristics, thus effectively working
+for general I/O workloads including append-only, write-once 
+as well as in-place update workloads.
+
+Ha {\it et al.} proposed an idea of using PCs to separate hot data from cold
+one in an FTL layer~\cite{PCHa}.  Kim {\it et al.} extended it for
+multi-streamed SSDs~\cite{PCStream}.  Unlike these work, our study treats the
+PC-based stream management problem in a more complete fashion by (1)
+pinpointing the key weaknesses of existing multi-streamed SSD solutions, (2)
+extending the effectiveness of PCs for more general I/O workloads including
+write-once patterns, and (3) introducing internal streams as an effective
+solution for outlier PCs.  Furthermore, \textsf{\small PCStream} exploits the
+globally unique nature of a PC signature for supporting short-lived
+applications that runs frequently.
 
 
-\section{Write Traffic Reduction Techniques}
+
+\subsection{Write Traffic Reduction Techniques}
 In order to extend the lifetime of flash-based SSDs,
 data deduplication techniques have been used in recent SSDs
 because they are effective in reducing the amount of data written to flash memory by preventing duplicate data from being written again~\cite{caftl,value-locality}.
@@ -163,5 +298,71 @@ This approach can complement the limitation of existing fixed-size deduplication
 which exhibit a relatively low amount of removed writes 
 in comparison with variable-size deduplication.
 
+\subsection{Program Context based Optimization Techniques for Operating Systems}
+History-based prediction techniques exploit the principle
+that most programs exhibit certain degrees of repetitive
+behavior. For example, subroutines in an application are
+ckalled multiple times, and loops are written to process a
+large amount of data. The challenge in making an accurate
+prediction is to link the past behavior (event) to
+its future reoccurrence. In particular, predictors need the
+program context of past events so that future events about
+to occur in the same context can be identified. The more
+accurate context information the predictor has about the
+past and future events, the more accurate prediction it can
+make about future program behavior.
 
+A key observation made in computer architecture is that
+a particular instruction usually performs a very unique
+task and seldom changes behavior, and thus program instructions
+provide a highly effective means of recording
+the context of program behavior. Since the instructions
+are uniquely described by their program counters (PCs)
+which specify the location of the instructions in memory,
+PCs offer a convenient way of recording the program context.
 
+One of the earliest predictors to take advantage of the
+information provided by PCs is branch prediction. 
+The PC of the branch instruction uniquely identifies
+the branch in the program and is associated with a particular
+behavior, for example, to take or not to take the
+branch. Branch prediction techniques correlate the past
+behavior of a branch instruction and predict its future behavior
+upon encountering the same instruction.
+
+The success in using the program counter in branch
+prediction was noticed and the PC information has been
+widely used in other predictor designs in computer architecture.
+Numerous PC-based predictors have been
+proposed to optimize energy~\cite{cacheenergy}, cache management~\cite{cachemngmt}
+, and memory prefetching~\cite{memoryprefetching}. 
+For example, PCs have been used to accurately predict
+the instruction behavior in the processor's pipeline
+which allows the hardware to apply power reduction techniques
+at the right time to minimize the impact on performance~\cite{cacheenergy}
+. In Last Touch Predictor~\cite{cachemngmt}, PCs are
+used to predict which data will not be used by the processor
+again and free up the cache for storing or prefetching
+more relevant data. In PC-based prefetch predictors~\cite{memoryprefetching}
+, a set of memory addresses or
+patterns are linked to a particular PC and the next set of
+data is prefetched when that PC is encountered again.
+
+Moreover, PCC~\cite{PC} considers the opportunity and 
+viability of PC-based prediction techniques
+in operating systems design. In particular, they consider
+the buffer cache management problem, which shares common
+characteristics with hardware cache management as
+they essentially deal with different levels of the memory
+hierarchy.
+The basic idea is to separate access streams by the program
+context (identified by the function call stack) when the I/O
+access is made, with the assumption that a single program
+context is likely to access disk files with the same pattern in
+the future.
+
+However, none of the existing PC-based approach focus of the storage devices.
+They use iterative access characteristics according to the PC 
+at the operating system level, e.g., cache management.
+Based on our analysis on PCs, program context can be a good candidate 
+for optimizing performance and lifetime of SSDs.

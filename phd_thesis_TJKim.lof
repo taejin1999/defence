@@ -1,41 +1,50 @@
 \addvspace {0\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Trends of read and write speeds under various NAND flash chips.\relax }}{1}
 \addvspace {0\p@ }
+\contentsline {figure}{\numberline {2}{\ignorespaces A simplified diagram of typical SSD.\relax }}{11}
+\contentsline {figure}{\numberline {3}{\ignorespaces Block allocation with and without multi-stream.\relax }}{13}
 \addvspace {0\p@ }
-\contentsline {figure}{\numberline {1}{\ignorespaces Lifetime distributions over addresses and times.}}{13}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Lifetime patterns over LBAs}}}{13}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Lifetime patterns over time}}}{13}
-\contentsline {figure}{\numberline {2}{\ignorespaces Data lifetime distributions of different PCs.}}{15}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Logging (PC)}}}{15}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Logging (manual)}}}{15}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Flushing (PC)}}}{15}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Flushing (manual)}}}{15}
-\contentsline {figure}{\numberline {3}{\ignorespaces An overall architecture of \textsf {\relax \fontsize {10}{12}\selectfont \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip PCStream}.}}{18}
-\contentsline {figure}{\numberline {4}{\ignorespaces An example execution path and its PC extraction.}}{19}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {An abstracted execution path for flushing data.}}}{19}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {with the frame pointer.}}}{19}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {without the frame pointer.}}}{19}
-\contentsline {figure}{\numberline {5}{\ignorespaces Lifetime distributions of the compaction activity at different levels.}}{22}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {compaction: all levels}}}{22}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {compaction: L2}}}{22}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {compaction: L3}}}{22}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {compaction: L4}}}{22}
-\contentsline {figure}{\numberline {6}{\ignorespaces A comparison of WAF on the SSD emulator.}}{24}
-\contentsline {figure}{\numberline {7}{\ignorespaces A comparison of per-stream lifetime distributions.}}{25}
-\contentsline {figure}{\numberline {8}{\ignorespaces A comparison of WAF on Samsung PM963 SSD.}}{26}
+\contentsline {figure}{\numberline {4}{\ignorespaces An illustration of (simplified) execution paths of two dominant I/O activities in RocksDB.\relax }}{24}
+\contentsline {figure}{\numberline {5}{\ignorespaces Examples of PC extraction methods.\relax }}{26}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {with the frame pointer.}}}{26}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {without the frame pointer.}}}{26}
+\contentsline {figure}{\numberline {6}{\ignorespaces Data lifetime distributions of different PCs.\relax }}{27}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Logging (PC)}}}{27}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Logging (manual)}}}{27}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Flushing (PC)}}}{27}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Flushing (manual)}}}{27}
 \addvspace {0\p@ }
-\contentsline {figure}{\numberline {9}{\ignorespaces The percentage of pages according to their partial duplicate patterns.}}{28}
-\contentsline {figure}{\numberline {10}{\ignorespaces The amount of written data under varying chunk sizes in \texttt {PC} workload.}}{29}
-\contentsline {figure}{\numberline {11}{\ignorespaces An overview of the proposed FineDedup technique.}}{32}
-\contentsline {figure}{\numberline {12}{\ignorespaces Data fragmentation caused by FineDedup.}}{34}
-\contentsline {figure}{\numberline {13}{\ignorespaces A packing scheme in the \textit {chunk buffer}.}}{35}
-\contentsline {figure}{\numberline {14}{\ignorespaces An overview of the demand-based hybrid mapping table.}}{38}
-\contentsline {figure}{\numberline {15}{\ignorespaces The amount of written data under various schemes.}}{41}
-\contentsline {figure}{\numberline {16}{\ignorespaces The number of page read operations.}}{42}
-\contentsline {figure}{\numberline {17}{\ignorespaces The effectiveness of the demand-based hybrid mapping table in FineDedup with various cache sizes.}}{44}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Hit ratio of SMT cache}}}{44}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Extra data written due to SMT cache evictions}}}{44}
-\contentsline {figure}{\numberline {18}{\ignorespaces The amount of extra written data due to mapping table eviction for the mixed workload.}}{45}
-\contentsline {figure}{\numberline {19}{\ignorespaces The number of page reads with and without read buffer.}}{46}
-\contentsline {figure}{\numberline {20}{\ignorespaces The number of page read operations under varying chunk read buffer sizes.}}{47}
-\contentsline {figure}{\numberline {21}{\ignorespaces The number of page read operations under varying chunk buffer sizes.}}{48}
+\contentsline {figure}{\numberline {7}{\ignorespaces Lifetime distributions of append-only workload over addresses and times.\relax }}{37}
+\contentsline {figure}{\numberline {8}{\ignorespaces IOPS changes over the number of streams.\relax }}{38}
+\contentsline {figure}{\numberline {9}{\ignorespaces Data lifetime distributions of dominant I/O activities in RocksDB, SQLite and GCC.\relax }}{42}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {RocksDB: Logging}}}{42}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {RocksDB: Flushing}}}{42}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {RocksDB: Compaction}}}{42}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {SQLite: Logging}}}{42}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {SQLite: Updating}}}{42}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {GCC: Outputting Temp}}}{42}
+\contentsline {subfigure}{\numberline {(g)}{\ignorespaces {GCC: Outputting Executable}}}{42}
+\contentsline {figure}{\numberline {10}{\ignorespaces Lifetime distributions of the compaction activity at different levels.\relax }}{45}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {RocksDB: L2 Compaction}}}{45}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {RocksDB: L4 Compaction}}}{45}
+\contentsline {figure}{\numberline {11}{\ignorespaces An overall architecture of \textsf {\relax \fontsize {10}{12}\selectfont \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip PCStream}.\relax }}{47}
+\contentsline {figure}{\numberline {12}{\ignorespaces Extracting PCs for JVM.\relax }}{54}
+\contentsline {figure}{\numberline {13}{\ignorespaces A comparison of normalized IOPS.\relax }}{57}
+\contentsline {figure}{\numberline {14}{\ignorespaces A comparison of WAF under different schemes.\relax }}{59}
+\contentsline {figure}{\numberline {15}{\ignorespaces A Comparison of per-stream lifetime distributions.\relax }}{60}
+\contentsline {figure}{\numberline {16}{\ignorespaces The effect of internal streams on WAF.\relax }}{61}
+\contentsline {figure}{\numberline {17}{\ignorespaces The effect of the PC attribute table.\relax }}{62}
+\addvspace {0\p@ }
+\contentsline {figure}{\numberline {18}{\ignorespaces Diagram of selective deduplication.\relax }}{67}
+\contentsline {figure}{\numberline {19}{\ignorespaces The percentage of pages according to their partial duplicate patterns.\relax }}{68}
+\contentsline {figure}{\numberline {20}{\ignorespaces The amount of written data under varying chunk sizes in \texttt {PC} workload.\relax }}{69}
+\contentsline {figure}{\numberline {21}{\ignorespaces An overview of the proposed FineDedup technique.\relax }}{72}
+\contentsline {figure}{\numberline {22}{\ignorespaces Data fragmentation caused by FineDedup.\relax }}{74}
+\contentsline {figure}{\numberline {23}{\ignorespaces A packing scheme in the \textit {chunk buffer}.\relax }}{75}
+\contentsline {figure}{\numberline {24}{\ignorespaces An overview of the demand-based hybrid mapping table.\relax }}{78}
+\contentsline {figure}{\numberline {25}{\ignorespaces The amount of written data under various schemes.\relax }}{81}
+\contentsline {figure}{\numberline {26}{\ignorespaces The number of page read operations.\relax }}{82}
+\contentsline {figure}{\numberline {27}{\ignorespaces The effectiveness of the demand-based hybrid mapping table in FineDedup with various cache sizes.\relax }}{84}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Hit ratio of SMT cache}}}{84}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Extra data written due to SMT cache evictions}}}{84}
 \addvspace {0\p@ }

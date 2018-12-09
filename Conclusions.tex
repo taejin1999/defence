@@ -11,16 +11,18 @@ However, the limited lifetime of NAND flash memory, as a side effect of recent
 advanced device technologies, is emerging as one of the major concerns for 
 recent high-performance SSDs, especially for datacenter applications.
 
-In this dissertation, we proposed several system-level techniques that improve
-the lifetime of NAND flash-based storage devices. We first presented
-data separation technique, called PCStream, for multi-streamed SSDs.
-Unlike existing stream management techniques, \textsf{\small PCStream} fully automates 
-the process of mapping data to a stream based on PCs, 
-which work well for append-only workloads as well as update workloads.  
-By exploiting an observation that most PCs are distinguishable from each other 
-in their lifetime characteristics, \textsf{\small PCStream} allocates each PC to a different stream.  
-When a PC has a large variance in their lifetimes, \textsf{\small PCStream} refines its stream allocation 
-during garbage collection and moves the long-lived data of the current stream to its substream.  
+In this dissertation, 
+we have presented a new stream management technique, \textsf{\small PCStream},
+for multi-streamed SSDs.  Unlike existing techniques, \textsf{\small PCStream}
+fully automates the process of mapping data to a stream based on PCs.  Based on
+observations that most PCs are effective to distinguish lifetime
+characteristics of written data, \textsf{\small PCStream} allocates each PC to
+a different stream.  When a PC has a large variance in their lifetimes,
+\textsf{\small PCStream} refines its stream allocation during GC and moves the
+long-lived data of the current stream to the corresponding internal stream.
+Our experimental results show that \textsf{\small PCStream} can improve the
+IOPS by up to 56\% over the existing automatic technique while reducing WAF by
+up to 69\%. 
 
 Next, 
 we propose a fine-grained deduplication technique for flash-based SSDs, called FineDedup.
@@ -39,13 +41,75 @@ FineDedup is effective in improving the SSD lifetime,
 requiring only about 10 MBs of more memory space in total.
 
 \section{Future Work}
-\subsection{Improving stream mapping method of PCStream}
+\subsection{Supporting applications that have unusal program contexts}
 
-The current version of \textsf{\small PCStream} can be extended in several directions.  
-For example, we plan to optimize the PC clustering method so that
-multiple PCs can be better clustered when the number of PCs significantly
-outnumbers the number of streams.  
-For example, \textsf{\small PCStream} should be improved in its PC clustering method 
-so that it can work effectively even when there are more PCs than the number of streams.  
-We also plan to evaluate \textsf{\small PCStream} on real SSDs 
-by implementing the two-phase stream assignment algorithm inside an FTL.
+The current version of \textsf{\small PCStream} can be extended.
+\textsf{\small PCStream} does not support applications that
+rely on a write buffer ({\it e.g.,} MySQL). 
+Similarly, we can make PCStream to support thread pools.
+In a thread pool, I/O is performed by worker threads.  
+so it obviously won't work unless we somehow capture PC when an I/O is  
+queued to the thread pool.
+
+To address this, we plan to extend
+\textsf{\small PCStream} interfaces so that developers can easily incorporate
+\textsf{\small PCStream} into their write buffering modules with minimal
+efforts.  
+The key insight on this extension is that we should
+collect PC signatures {\it at the front-end interface} of an intermediate layer that accepts write
+requests from other parts of the program.
+
+
+\subsection{Optimizing read request based on the I/O context}
+Although PCStream focues on only writes, program contexts are originally
+used to predict accesses to the cache at the operating system layer.
+For example, PCs have been used to accurately predict
+the instruction behavior in the processor's pipeline
+which allows the hardware to apply power reduction techniques
+at the right time to minimize the impact on performance~\cite{cacheenergy}
+. In Last Touch Predictor~\cite{cachemngmt}, PCs are
+used to predict which data will not be used by the processor
+again and free up the cache for storing or prefetching
+more relevant data. In PC-based prefetch predictors~\cite{memoryprefetching}
+, a set of memory addresses or
+patterns are linked to a particular PC and the next set of
+data is prefetched when that PC is encountered again.
+
+Based on the good performance on cache management, we can optimize
+read request using the program context. For example, when there are 
+some read pattern for a PC (sequential read or repetitive read), we can 
+copy the target page to other chip or channel to maximize read bandwidth
+for the future read.
+Moreover, when there is a program context that read specific address many times,
+we can handle read disturbance problem in advance.
+
+
+\subsection{Exploiting context information to improve fingerprint lookups}
+One of the most time-consuming operations
+in a deduplication system is hash lookup, because it often
+requires extra I/O operations. Worse, hashes are randomly
+distributed by their very nature. Hence, looking
+up a hash often requires random I/O, which is the slowest
+operation in most storage systems. Also, as previous
+studies have shown~\cite{diskbottleneck}, it is impractical to keep all the
+hashes in memory because the hash index is far too large.
+
+When a deduplication system knows
+what data is about to be written, it can prefetch the corresponding
+hashes from the index, accelerating future
+data writes by reducing lookup delays. For example, a
+copying process first reads source data and then writes it
+back. If a deduplication system can identify that behavior
+at read time, it can prefetch the corresponding hash
+entries from the index to speed up the write path. Another
+interesting use case for this context is segment cleaning
+in log-structured file systems (e.g., Nilfs2) that migrate
+data between segments during garbage collection.
+
+The I/O context is used to inform the deduplication
+system of I/O operations that are likely to generate
+further duplicates (e.g., during a file copy) so that
+their hashes can be prefetched and cached to minimize
+random accesses. This hint can be set on the read
+path for applications that expect to access the same data
+again. 

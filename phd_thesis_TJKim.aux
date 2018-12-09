@@ -1,34 +1,59 @@
 \relax 
-\citation{MooresLaw}
 \@writefile{toc}{\contentsline {chapter}{\numberline {I}Introduction}{1}}
 \@writefile{lof}{\addvspace {0\p@ }}
 \@writefile{lot}{\addvspace {0\p@ }}
 \newlabel{chap:Introduction}{{1}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Motivation}{1}}
 \newlabel{sec:Intro_Motivation}{{1.1}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Trends of read and write speeds under various NAND flash chips.\relax }}{1}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:latency_trend}{{1}{1}}
+\citation{MooresLaw}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}Garbage Collection Problem}{2}}
+\citation{FTL}
+\citation{HotCold}
 \citation{DPES}
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}Dissertation Goals}{3}}
-\citation{PC}
-\citation{PC2}
-\citation{PCHa}
-\@writefile{toc}{\contentsline {section}{\numberline {1.3}Contributions}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.4}Dissertation Structure}{5}}
-\citation{PCHa}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.2}Limited Endurance Problem}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Dissertation Goals}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Contributions}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}Dissertation Structure}{8}}
+\citation{FTL}
+\@writefile{toc}{\contentsline {chapter}{\numberline {II}Background}{10}}
+\@writefile{lof}{\addvspace {0\p@ }}
+\@writefile{lot}{\addvspace {0\p@ }}
+\newlabel{chap:Background}{{2}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}NAND Flash Memory System Software}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}NAND Flash-Based Storage Devices}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A simplified diagram of typical SSD.\relax }}{11}}
+\newlabel{fig:ssd_arch}{{2}{11}}
+\citation{MultiStream}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Multi-stream Interface}{12}}
+\citation{InlineDedup}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Block allocation with and without multi-stream.\relax }}{13}}
+\newlabel{fig:multistream}{{3}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Inline Data Deduplication Technique}{13}}
+\citation{InlineDedup}
+\citation{multibloom}
+\citation{updatefreq}
+\citation{writehot}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Related Work}{14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Data Separation Techniques for Multi-streamed SSDs}{14}}
+\citation{MultiStream}
+\citation{Level}
+\citation{vStream}
+\citation{FStream}
+\citation{AutoStream}
+\citation{PCStream}
 \citation{MultiStream}
 \citation{Level}
 \citation{FStream}
-\@writefile{toc}{\contentsline {chapter}{\numberline {II}Related Work}{6}}
-\@writefile{lof}{\addvspace {0\p@ }}
-\@writefile{lot}{\addvspace {0\p@ }}
-\newlabel{chap:Background}{{2}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Data Separation Techniques for Multi-streamed SSDs}{6}}
 \citation{AutoStream}
-\citation{RocksDB}
-\citation{Cassandra}
+\citation{PCHa}
+\citation{PCStream}
 \citation{caftl}
 \citation{value-locality}
 \citation{16kpage}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Write Traffic Reduction Techniques}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Write Traffic Reduction Techniques}{16}}
 \citation{FAST}
 \citation{tlc}
 \citation{caftl}
@@ -39,177 +64,304 @@
 \citation{value-locality}
 \citation{order-merge}
 \citation{cachededup}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Program Context based Optimization Techniques for Operating Systems}{20}}
+\citation{cacheenergy}
+\citation{cachemngmt}
+\citation{memoryprefetching}
+\citation{cacheenergy}
+\citation{cachemngmt}
+\citation{memoryprefetching}
+\citation{PC}
+\citation{PC}
+\citation{PC2}
+\@writefile{toc}{\contentsline {chapter}{\numberline {III}Capturing Dominant I/O Activities of an Application by Program Contexts}{23}}
+\@writefile{lof}{\addvspace {0\p@ }}
+\@writefile{lot}{\addvspace {0\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Definition and Extraction of Program Context}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces An illustration of (simplified) execution paths of two dominant I/O activities in RocksDB.\relax }}{24}}
+\newlabel{fig:iopath}{{4}{24}}
+\citation{GCC}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Examples of PC extraction methods.\relax }}{26}}
+\newlabel{fig:getpc}{{5}{26}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {with the frame pointer.}}}{26}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {without the frame pointer.}}}{26}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Data Lifetime Patterns of I/O Activities}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Data lifetime distributions of different PCs.\relax }}{27}}
+\newlabel{fig:types_and_PCs_}{{6}{27}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Logging (PC)}}}{27}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Logging (manual)}}}{27}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Flushing (PC)}}}{27}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Flushing (manual)}}}{27}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Duplicate Data Patterns of I/O Activities}{28}}
+\newlabel{sec:duplicateactivity}{{3.3}{28}}
+\citation{YCSB}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Duplicate rates for I/O activities.\relax }}{29}}
+\newlabel{tab:duprates}{{1}{29}}
+\citation{DAC}
+\citation{WriteAmplification}
+\citation{GCGreedy}
+\citation{GCVictim}
+\citation{GCTTFlash}
+\citation{HotCold}
+\citation{JiTGC}
+\citation{ShadowGC}
 \citation{T10}
 \citation{MultiStream}
 \citation{MultiStream}
 \citation{Level}
+\citation{vStream}
 \citation{FStream}
 \citation{AutoStream}
-\citation{PCHa}
+\@writefile{toc}{\contentsline {chapter}{\numberline {IV}Fully Automatic Stream Management For Multi-Streamed SSDs Using Program Contexts}{31}}
+\@writefile{lof}{\addvspace {0\p@ }}
+\@writefile{lot}{\addvspace {0\p@ }}
+\newlabel{chap:PCstream}{{4}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Overview}{31}}
 \citation{MultiStream}
 \citation{Level}
+\citation{vStream}
 \citation{FStream}
 \citation{AutoStream}
-\citation{HotCold}
-\citation{AutoStream}
-\@writefile{toc}{\contentsline {chapter}{\numberline {III}Automatic Stream Allocation Using Program Contexts}{12}}
-\@writefile{lof}{\addvspace {0\p@ }}
-\@writefile{lot}{\addvspace {0\p@ }}
-\newlabel{chap:PCstream}{{3}{12}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Motivation}{12}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Fallacy: LBA-based lifetime prediction}{12}}
 \citation{RocksDB}
-\citation{LSM}
-\citation{RocksDB}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Lifetime distributions over addresses and times.}}{13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Lifetime patterns over LBAs}}}{13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Lifetime patterns over time}}}{13}}
-\newlabel{fig:lba_lifetime}{{1}{13}}
-\citation{PCHa}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Program context as a lifetime predictor}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Data lifetime distributions of different PCs.}}{15}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Logging (PC)}}}{15}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Logging (manual)}}}{15}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Flushing (PC)}}}{15}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Flushing (manual)}}}{15}}
-\newlabel{fig:types_and_PCs}{{2}{15}}
+\citation{Cassandra}
 \citation{PC}
-\citation{TRIM}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Design of \textsf  {PCStream}}{16}}
-\citation{GCC}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Automatic PC computation}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces An overall architecture of \textsf  {\relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip PCStream}.}}{18}}
-\newlabel{fig:architecture}{{3}{18}}
-\citation{TRIM}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces An example execution path and its PC extraction.}}{19}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {An abstracted execution path for flushing data.}}}{19}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {with the frame pointer.}}}{19}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {without the frame pointer.}}}{19}}
-\newlabel{fig:getpc}{{4}{19}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}PC lifetime prediction}{19}}
+\citation{PC2}
+\citation{PCHa}
+\citation{kmeans}
+\citation{MultiStream}
+\citation{Level}
+\citation{vStream}
+\citation{MultiStream}
+\citation{MultiStream}
+\citation{Level}
+\citation{vStream}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Motivation}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}No Automatic Stream Management for General I/O Workloads}{35}}
 \citation{FStream}
 \citation{AutoStream}
+\citation{FStream}
+\citation{AutoStream}
+\citation{RocksDB}
+\citation{Cassandra}
+\citation{RocksDB}
 \citation{LSM}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Mapping PCs to SSD streams}{20}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Two-phase stream assignment}{20}}
+\citation{TRIM}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Lifetime distributions of append-only workload over addresses and times.\relax }}{37}}
+\newlabel{fig:lba_lifetime}{{7}{37}}
+\citation{T10}
+\citation{NVMe}
+\citation{MultiStream}
+\citation{Level}
+\citation{AutoStream}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces IOPS changes over the number of streams.\relax }}{38}}
+\newlabel{fig:stream_perf}{{8}{38}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Limited Number of Supported Streams}{38}}
+\newlabel{sec:limitedstreams}{{4.2.2}{38}}
+\citation{TCM}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Automatic I/O Activity Management}{40}}
+\newlabel{sec:programcontext}{{4.3}{40}}
+\citation{PC}
+\citation{PC2}
+\citation{RocksDB}
+\citation{SQLite}
+\citation{GCC}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}PC as a Unit of Lifetime Classification for General I/O Workloads}{41}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Data lifetime distributions of dominant I/O activities in RocksDB, SQLite and GCC.\relax }}{42}}
+\newlabel{fig:types_and_PCs}{{9}{42}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {RocksDB: Logging}}}{42}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {RocksDB: Flushing}}}{42}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {RocksDB: Compaction}}}{42}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {SQLite: Logging}}}{42}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {SQLite: Updating}}}{42}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {GCC: Outputting Temp}}}{42}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(g)}{\ignorespaces {GCC: Outputting Executable}}}{42}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Support for Large Number of Streams}{43}}
+\newlabel{sec:internal}{{4.4}{43}}
+\citation{LSM}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}PCs with Large Lifetime Variances}{44}}
+\newlabel{sec:largevariance}{{4.4.1}{44}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Lifetime distributions of the compaction activity at different levels.\relax }}{45}}
+\newlabel{fig:compaction}{{10}{45}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {RocksDB: L2 Compaction}}}{45}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {RocksDB: L4 Compaction}}}{45}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Implementation of Internal Streams}{46}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces An overall architecture of \textsf  {\relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip PCStream}.\relax }}{47}}
+\newlabel{fig:architecture}{{11}{47}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Design and Implementation of \textsf  {PCStream}}{48}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}PC Lifetime Management}{48}}
+\newlabel{sec:PC_lf_mngm}{{4.5.1}{48}}
+\citation{kmeans}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Mapping PCs to SSD streams}{51}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.3}Internal Stream Management}{52}}
+\citation{PM963}
+\citation{JNI}
+\citation{MySQL}
+\citation{PostgreSQL}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.4}PC Extraction for Indirect Writes}{53}}
+\citation{OpenJDK}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Extracting PCs for JVM.\relax }}{54}}
+\newlabel{fig:java}{{12}{54}}
+\citation{nvmecli}
 \citation{MultiStream}
 \citation{AutoStream}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Lifetime distributions of the compaction activity at different levels.}}{22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {compaction: all levels}}}{22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {compaction: L2}}}{22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {compaction: L3}}}{22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {compaction: L4}}}{22}}
-\newlabel{fig:compaction}{{5}{22}}
-\citation{AMF}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Experimental Results}{23}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Experiments with an SSD emulator}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A comparison of WAF on the SSD emulator.}}{24}}
-\newlabel{fig:result_emul}{{6}{24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A comparison of per-stream lifetime distributions.}}{25}}
-\newlabel{fig:stream_lifetime}{{7}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces A comparison of WAF on Samsung PM963 SSD.}}{26}}
-\newlabel{fig:result_ssd}{{8}{26}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Experiments with a real-world SSD}{26}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {IV}Fine-grained Deduplication Technique}{27}}
+\citation{AutoStream}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Experimental Results}{55}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}Experimental Settings}{55}}
+\citation{RocksDB}
+\citation{Cassandra}
+\citation{SQLite}
+\citation{GCC}
+\citation{YCSB}
+\citation{LSM}
+\citation{TPCC}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces A comparison of normalized IOPS.\relax }}{57}}
+\newlabel{fig:iops}{{13}{57}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.2}Performance Evaluation}{57}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.3}WAF Comparison}{58}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces A comparison of WAF under different schemes.\relax }}{59}}
+\newlabel{fig:waf}{{14}{59}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.4}Per-stream Lifetime Distribution Analysis}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces A Comparison of per-stream lifetime distributions.\relax }}{60}}
+\newlabel{fig:distribution}{{15}{60}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.5}Impact of Internal Streams}{60}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces The effect of internal streams on WAF.\relax }}{61}}
+\newlabel{fig:internal}{{16}{61}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces The effect of the PC attribute table.\relax }}{62}}
+\newlabel{fig:pctable}{{17}{62}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.6}Impact of the PC Attribute Table}{62}}
+\citation{tlc}
+\citation{caftl}
+\citation{value-locality}
+\citation{16kpage}
+\@writefile{toc}{\contentsline {chapter}{\numberline {V}Fine-grained Deduplication Technique using Program Contexts}{64}}
 \@writefile{lof}{\addvspace {0\p@ }}
 \@writefile{lot}{\addvspace {0\p@ }}
-\newlabel{chap:FineDedup}{{4}{27}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Motivations}{27}}
-\newlabel{sec:finededup_motivation}{{4.1}{27}}
+\newlabel{chap:FineDedup}{{5}{64}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Overview}{64}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Selective Deduplication using Program Contexts}{66}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Diagram of selective deduplication.\relax }}{67}}
+\newlabel{fig:selectivededup}{{18}{67}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Exploiting Small Chunk Size }{67}}
+\newlabel{sec:finededup_motivation}{{5.3}{67}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces The percentage of pages according to their partial duplicate patterns.\relax }}{68}}
+\newlabel{fig:percentage}{{19}{68}}
 \citation{tlc}
 \citation{16kpage}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The percentage of pages according to their partial duplicate patterns.}}{28}}
-\newlabel{fig:percentage}{{9}{28}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The amount of written data under varying chunk sizes in \texttt  {PC} workload.}}{29}}
-\newlabel{fig:chunksize}{{10}{29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces The amount of written data under varying chunk sizes in \texttt  {PC} workload.\relax }}{69}}
+\newlabel{fig:chunksize}{{20}{69}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Fine-Grained Deduplication}{70}}
+\newlabel{sec:finededup_finededup}{{5.4}{70}}
 \citation{md6}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Fine-Grained Deduplication}{30}}
-\newlabel{sec:finededup_finededup}{{4.2}{30}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Overall Architecture of FineDedup}{30}}
-\newlabel{sec:finededup_architecture}{{4.2.1}{30}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces An overview of the proposed FineDedup technique.}}{32}}
-\newlabel{fig:overview}{{11}{32}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Read Overhead Management}{33}}
-\newlabel{sec:finededup_readoverheadmanagement}{{4.2.2}{33}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Data fragmentation caused by FineDedup.}}{34}}
-\newlabel{fig:readoverhead}{{12}{34}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces A packing scheme in the \textit  {chunk buffer}.}}{35}}
-\newlabel{fig:chunkbuffer}{{13}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Overall Architecture of FineDedup}{71}}
+\newlabel{sec:finededup_architecture}{{5.4.1}{71}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces An overview of the proposed FineDedup technique.\relax }}{72}}
+\newlabel{fig:overview}{{21}{72}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Read Overhead Management}{73}}
+\newlabel{sec:finededup_readoverheadmanagement}{{5.4.2}{73}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Data fragmentation caused by FineDedup.\relax }}{74}}
+\newlabel{fig:readoverhead}{{22}{74}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces A packing scheme in the \textit  {chunk buffer}.\relax }}{75}}
+\newlabel{fig:chunkbuffer}{{23}{75}}
 \citation{sm825}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Memory Overhead Management}{37}}
-\newlabel{sec:finededup_memoryoverheadmanagement}{{4.2.3}{37}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces An overview of the demand-based hybrid mapping table.}}{38}}
-\newlabel{fig:hybridmapping}{{14}{38}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Memory Overhead Management}{77}}
+\newlabel{sec:finededup_memoryoverheadmanagement}{{5.4.3}{77}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces An overview of the demand-based hybrid mapping table.\relax }}{78}}
+\newlabel{fig:hybridmapping}{{24}{78}}
 \citation{dftl}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Experimental Results}{39}}
-\newlabel{sec:finededup_experimentalresult}{{4.3}{39}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Experimental Settings}{39}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces A summary of traces used for experimental evaluations.}}{40}}
-\newlabel{tab:traces}{{1}{40}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Effectiveness of FineDedup}{40}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces The amount of written data under various schemes.}}{41}}
-\newlabel{fig:reducedData}{{15}{41}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces The number of page read operations.}}{42}}
-\newlabel{fig:pageread}{{16}{42}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Read Overhead Evaluation}{42}}
-\newlabel{sec:finededup_readoverheadevaluation}{{4.3.3}{42}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Experimental Results}{79}}
+\newlabel{sec:finededup_experimentalresult}{{5.5}{79}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces A summary of traces used for experimental evaluations.\relax }}{80}}
+\newlabel{tab:traces}{{2}{80}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Effectiveness of FineDedup}{80}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces The amount of written data under various schemes.\relax }}{81}}
+\newlabel{fig:reducedData}{{25}{81}}
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces The number of page read operations.\relax }}{82}}
+\newlabel{fig:pageread}{{26}{82}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Read Overhead Evaluation}{82}}
+\newlabel{sec:finededup_readoverheadevaluation}{{5.5.2}{82}}
 \citation{dftl}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Memory Overhead Evaluation}{43}}
-\newlabel{sec:finededup_memoryoverheadevaluation}{{4.3.4}{43}}
-\newlabel{fig:mappingcachehit}{{17(a)}{44}}
-\newlabel{sub@fig:mappingcachehit}{{(a)}{44}}
-\newlabel{fig:mappingeviction}{{17(b)}{44}}
-\newlabel{sub@fig:mappingeviction}{{(b)}{44}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces The effectiveness of the demand-based hybrid mapping table in FineDedup with various cache sizes.}}{44}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Hit ratio of SMT cache}}}{44}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Extra data written due to SMT cache evictions}}}{44}}
-\newlabel{fig:mappingoverhead}{{17}{44}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces The amount of extra written data due to mapping table eviction for the mixed workload.}}{45}}
-\newlabel{fig:eviction_mixed}{{18}{45}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Evaluation of the Effectiveness of Cached Mapping Table for Mixed Workloads}{45}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces The number of page reads with and without read buffer.}}{46}}
-\newlabel{fig:readbuffer}{{19}{46}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.6}Evaluation of the Effectiveness of the Chunk Read Buffer}{46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces The number of page read operations under varying chunk read buffer sizes.}}{47}}
-\newlabel{fig:buffersize}{{20}{47}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.7}Sensitivity Study on Chunk Read Buffer Size}{47}}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces The number of page read operations under varying chunk buffer sizes.}}{48}}
-\newlabel{fig:chunkbuffersize}{{21}{48}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.8}Sensitivity Study on Chunk Buffer Size}{48}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {V}Conclusions}{50}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.3}Memory Overhead Evaluation}{83}}
+\newlabel{sec:finededup_memoryoverheadevaluation}{{5.5.3}{83}}
+\newlabel{fig:mappingcachehit}{{27a}{84}}
+\newlabel{sub@fig:mappingcachehit}{{(a)}{a}}
+\newlabel{fig:mappingeviction}{{27b}{84}}
+\newlabel{sub@fig:mappingeviction}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces The effectiveness of the demand-based hybrid mapping table in FineDedup with various cache sizes.\relax }}{84}}
+\newlabel{fig:mappingoverhead}{{27}{84}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Hit ratio of SMT cache}}}{84}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Extra data written due to SMT cache evictions}}}{84}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {VI}Conclusions}{85}}
 \@writefile{lof}{\addvspace {0\p@ }}
 \@writefile{lot}{\addvspace {0\p@ }}
-\newlabel{chap:Conclusions}{{5}{50}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Summary and Conclusions}{50}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Future Work}{51}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Improving stream mapping method of PCStream}{51}}
-\bibcite{MooresLaw}{1}
-\bibcite{DPES}{2}
-\bibcite{T10}{3}
-\bibcite{MultiStream}{4}
-\bibcite{Level}{5}
-\bibcite{FStream}{6}
-\bibcite{AutoStream}{7}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{52}}
-\bibcite{PCHa}{8}
-\bibcite{RocksDB}{9}
-\bibcite{Cassandra}{10}
-\bibcite{PC}{11}
-\bibcite{PC2}{12}
-\bibcite{HotCold}{13}
-\bibcite{LSM}{14}
-\bibcite{TRIM}{15}
-\bibcite{GCC}{16}
-\bibcite{AMF}{17}
-\bibcite{tlc}{18}
-\bibcite{16kpage}{19}
-\bibcite{FAST}{20}
-\bibcite{md6}{21}
-\bibcite{sm825}{22}
-\bibcite{caftl}{23}
-\bibcite{value-locality}{24}
-\bibcite{order-merge}{25}
-\bibcite{cachededup}{26}
-\bibcite{dedupv1}{27}
-\bibcite{dong}{28}
-\bibcite{dftl}{29}
+\newlabel{chap:Conclusions}{{6}{85}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Summary and Conclusions}{85}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Future Work}{86}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Supporting applications that have unusal program contexts}{86}}
+\citation{cacheenergy}
+\citation{cachemngmt}
+\citation{memoryprefetching}
+\citation{diskbottleneck}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Optimizing read request based on the I/O context}{87}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Exploiting context information to improve fingerprint lookups}{88}}
+\bibcite{FTL}{1}
+\bibcite{MooresLaw}{2}
+\bibcite{HotCold}{3}
+\bibcite{DPES}{4}
+\bibcite{InlineDedup}{5}
+\bibcite{multibloom}{6}
+\bibcite{updatefreq}{7}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{89}}
+\bibcite{writehot}{8}
+\bibcite{cacheenergy}{9}
+\bibcite{cachemngmt}{10}
+\bibcite{memoryprefetching}{11}
+\bibcite{DAC}{12}
+\bibcite{WriteAmplification}{13}
+\bibcite{GCGreedy}{14}
+\bibcite{GCVictim}{15}
+\bibcite{GCTTFlash}{16}
+\bibcite{JiTGC}{17}
+\bibcite{ShadowGC}{18}
+\bibcite{T10}{19}
+\bibcite{MultiStream}{20}
+\bibcite{Level}{21}
+\bibcite{vStream}{22}
+\bibcite{FStream}{23}
+\bibcite{AutoStream}{24}
+\bibcite{RocksDB}{25}
+\bibcite{Cassandra}{26}
+\bibcite{PC}{27}
+\bibcite{PC2}{28}
+\bibcite{PCHa}{29}
+\bibcite{kmeans}{30}
+\bibcite{LSM}{31}
+\bibcite{TRIM}{32}
+\bibcite{NVMe}{33}
+\bibcite{TCM}{34}
+\bibcite{SQLite}{35}
+\bibcite{GCC}{36}
+\bibcite{AMF}{37}
+\bibcite{PM963}{38}
+\bibcite{JNI}{39}
+\bibcite{MySQL}{40}
+\bibcite{PostgreSQL}{41}
+\bibcite{OpenJDK}{42}
+\bibcite{nvmecli}{43}
+\bibcite{YCSB}{44}
+\bibcite{TPCC}{45}
+\bibcite{PCStream}{46}
+\bibcite{MonetDB}{47}
+\bibcite{mmap}{48}
+\bibcite{tlc}{49}
+\bibcite{16kpage}{50}
+\bibcite{FAST}{51}
+\bibcite{md6}{52}
+\bibcite{sm825}{53}
+\bibcite{caftl}{54}
+\bibcite{value-locality}{55}
+\bibcite{order-merge}{56}
+\bibcite{cachededup}{57}
+\bibcite{dedupv1}{58}
+\bibcite{dong}{59}
+\bibcite{dftl}{60}
+\bibcite{diskbottleneck}{61}

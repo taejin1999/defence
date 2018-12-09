@@ -1,40 +1,61 @@
 \contentsline {chapter}{\numberline {I}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Motivation}{1}
-\contentsline {section}{\numberline {1.2}Dissertation Goals}{3}
-\contentsline {section}{\numberline {1.3}Contributions}{4}
-\contentsline {section}{\numberline {1.4}Dissertation Structure}{5}
-\contentsline {chapter}{\numberline {II}Related Work}{6}
-\contentsline {section}{\numberline {2.1}Data Separation Techniques for Multi-streamed SSDs}{6}
-\contentsline {section}{\numberline {2.2}Write Traffic Reduction Techniques}{7}
-\contentsline {chapter}{\numberline {III}Automatic Stream Allocation Using Program Contexts}{12}
-\contentsline {section}{\numberline {3.1}Motivation}{12}
-\contentsline {subsection}{\numberline {3.1.1}Fallacy: LBA-based lifetime prediction}{12}
-\contentsline {subsection}{\numberline {3.1.2}Program context as a lifetime predictor}{14}
-\contentsline {section}{\numberline {3.2}Design of \textsf {PCStream}}{16}
-\contentsline {subsection}{\numberline {3.2.1}Automatic PC computation}{17}
-\contentsline {subsection}{\numberline {3.2.2}PC lifetime prediction}{19}
-\contentsline {subsection}{\numberline {3.2.3}Mapping PCs to SSD streams}{20}
-\contentsline {subsection}{\numberline {3.2.4}Two-phase stream assignment}{20}
-\contentsline {section}{\numberline {3.3}Experimental Results}{23}
-\contentsline {subsection}{\numberline {3.3.1}Experiments with an SSD emulator}{23}
-\contentsline {subsection}{\numberline {3.3.2}Experiments with a real-world SSD}{26}
-\contentsline {chapter}{\numberline {IV}Fine-grained Deduplication Technique}{27}
-\contentsline {section}{\numberline {4.1}Motivations}{27}
-\contentsline {section}{\numberline {4.2}Fine-Grained Deduplication}{30}
-\contentsline {subsection}{\numberline {4.2.1}Overall Architecture of FineDedup}{30}
-\contentsline {subsection}{\numberline {4.2.2}Read Overhead Management}{33}
-\contentsline {subsection}{\numberline {4.2.3}Memory Overhead Management}{37}
-\contentsline {section}{\numberline {4.3}Experimental Results}{39}
-\contentsline {subsection}{\numberline {4.3.1}Experimental Settings}{39}
-\contentsline {subsection}{\numberline {4.3.2}Effectiveness of FineDedup}{40}
-\contentsline {subsection}{\numberline {4.3.3}Read Overhead Evaluation}{42}
-\contentsline {subsection}{\numberline {4.3.4}Memory Overhead Evaluation}{43}
-\contentsline {subsection}{\numberline {4.3.5}Evaluation of the Effectiveness of Cached Mapping Table for Mixed Workloads}{45}
-\contentsline {subsection}{\numberline {4.3.6}Evaluation of the Effectiveness of the Chunk Read Buffer}{46}
-\contentsline {subsection}{\numberline {4.3.7}Sensitivity Study on Chunk Read Buffer Size}{47}
-\contentsline {subsection}{\numberline {4.3.8}Sensitivity Study on Chunk Buffer Size}{48}
-\contentsline {chapter}{\numberline {V}Conclusions}{50}
-\contentsline {section}{\numberline {5.1}Summary and Conclusions}{50}
-\contentsline {section}{\numberline {5.2}Future Work}{51}
-\contentsline {subsection}{\numberline {5.2.1}Improving stream mapping method of PCStream}{51}
-\contentsline {chapter}{Bibliography}{52}
+\contentsline {subsection}{\numberline {1.1.1}Garbage Collection Problem}{2}
+\contentsline {subsection}{\numberline {1.1.2}Limited Endurance Problem}{4}
+\contentsline {section}{\numberline {1.2}Dissertation Goals}{6}
+\contentsline {section}{\numberline {1.3}Contributions}{7}
+\contentsline {section}{\numberline {1.4}Dissertation Structure}{8}
+\contentsline {chapter}{\numberline {II}Background}{10}
+\contentsline {section}{\numberline {2.1}NAND Flash Memory System Software}{10}
+\contentsline {section}{\numberline {2.2}NAND Flash-Based Storage Devices}{11}
+\contentsline {section}{\numberline {2.3}Multi-stream Interface}{12}
+\contentsline {section}{\numberline {2.4}Inline Data Deduplication Technique}{13}
+\contentsline {section}{\numberline {2.5}Related Work}{14}
+\contentsline {subsection}{\numberline {2.5.1}Data Separation Techniques for Multi-streamed SSDs}{14}
+\contentsline {subsection}{\numberline {2.5.2}Write Traffic Reduction Techniques}{16}
+\contentsline {subsection}{\numberline {2.5.3}Program Context based Optimization Techniques for Operating Systems}{20}
+\contentsline {chapter}{\numberline {III}Capturing Dominant I/O Activities of an Application by Program Contexts}{23}
+\contentsline {section}{\numberline {3.1}Definition and Extraction of Program Context}{23}
+\contentsline {section}{\numberline {3.2}Data Lifetime Patterns of I/O Activities}{26}
+\contentsline {section}{\numberline {3.3}Duplicate Data Patterns of I/O Activities}{28}
+\contentsline {chapter}{\numberline {IV}Fully Automatic Stream Management For Multi-Streamed SSDs Using Program Contexts}{31}
+\contentsline {section}{\numberline {4.1}Overview}{31}
+\contentsline {section}{\numberline {4.2}Motivation}{35}
+\contentsline {subsection}{\numberline {4.2.1}No Automatic Stream Management for General I/O Workloads}{35}
+\contentsline {subsection}{\numberline {4.2.2}Limited Number of Supported Streams}{38}
+\contentsline {section}{\numberline {4.3}Automatic I/O Activity Management}{40}
+\contentsline {subsection}{\numberline {4.3.1}PC as a Unit of Lifetime Classification for General I/O Workloads}{41}
+\contentsline {section}{\numberline {4.4}Support for Large Number of Streams}{43}
+\contentsline {subsection}{\numberline {4.4.1}PCs with Large Lifetime Variances}{44}
+\contentsline {subsection}{\numberline {4.4.2}Implementation of Internal Streams}{46}
+\contentsline {section}{\numberline {4.5}Design and Implementation of \textsf {PCStream}}{48}
+\contentsline {subsection}{\numberline {4.5.1}PC Lifetime Management}{48}
+\contentsline {subsection}{\numberline {4.5.2}Mapping PCs to SSD streams}{51}
+\contentsline {subsection}{\numberline {4.5.3}Internal Stream Management}{52}
+\contentsline {subsection}{\numberline {4.5.4}PC Extraction for Indirect Writes}{53}
+\contentsline {section}{\numberline {4.6}Experimental Results}{55}
+\contentsline {subsection}{\numberline {4.6.1}Experimental Settings}{55}
+\contentsline {subsection}{\numberline {4.6.2}Performance Evaluation}{57}
+\contentsline {subsection}{\numberline {4.6.3}WAF Comparison}{58}
+\contentsline {subsection}{\numberline {4.6.4}Per-stream Lifetime Distribution Analysis}{59}
+\contentsline {subsection}{\numberline {4.6.5}Impact of Internal Streams}{60}
+\contentsline {subsection}{\numberline {4.6.6}Impact of the PC Attribute Table}{62}
+\contentsline {chapter}{\numberline {V}Fine-grained Deduplication Technique using Program Contexts}{64}
+\contentsline {section}{\numberline {5.1}Overview}{64}
+\contentsline {section}{\numberline {5.2}Selective Deduplication using Program Contexts}{66}
+\contentsline {section}{\numberline {5.3}Exploiting Small Chunk Size }{67}
+\contentsline {section}{\numberline {5.4}Fine-Grained Deduplication}{70}
+\contentsline {subsection}{\numberline {5.4.1}Overall Architecture of FineDedup}{71}
+\contentsline {subsection}{\numberline {5.4.2}Read Overhead Management}{73}
+\contentsline {subsection}{\numberline {5.4.3}Memory Overhead Management}{77}
+\contentsline {section}{\numberline {5.5}Experimental Results}{79}
+\contentsline {subsection}{\numberline {5.5.1}Effectiveness of FineDedup}{80}
+\contentsline {subsection}{\numberline {5.5.2}Read Overhead Evaluation}{82}
+\contentsline {subsection}{\numberline {5.5.3}Memory Overhead Evaluation}{83}
+\contentsline {chapter}{\numberline {VI}Conclusions}{85}
+\contentsline {section}{\numberline {6.1}Summary and Conclusions}{85}
+\contentsline {section}{\numberline {6.2}Future Work}{86}
+\contentsline {subsection}{\numberline {6.2.1}Supporting applications that have unusal program contexts}{86}
+\contentsline {subsection}{\numberline {6.2.2}Optimizing read request based on the I/O context}{87}
+\contentsline {subsection}{\numberline {6.2.3}Exploiting context information to improve fingerprint lookups}{88}
+\contentsline {chapter}{Bibliography}{89}

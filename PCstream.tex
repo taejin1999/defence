@@ -16,7 +16,7 @@ which can be used as useful hints on the efficient data separation inside the
 SSD~\cite{JiTGC, ShadowGC}.
 
 Multi-streamed SSDs provide a special interface mechanism for a host system,
-called streams\footnote{In this paper, we use ``streams'' and ``external
+called streams\footnote{In this dissertation, we use ``streams'' and ``external
 streams'' interchangeably.}, which data separation decisions {\it on the
 host level} can be delivered to SSDs~\cite{T10, MultiStream}.  When the host
 system assigns two data $D_1$ and $D_2$ to different streams $S_1$ and $S_2$,
@@ -60,7 +60,7 @@ in-place update workloads where data written to the same LBAs often show strong 
 locality, append-only or write-once workloads make it impossible to predict data lifetimes
 from LBA characteristics such as the access frequency.
 
-In this paper, we propose a {\it fully-automatic} stream management technique,
+In this dissertation, we propose a {\it fully-automatic} stream management technique,
 called \textsf{\small PCStream}, which works efficiently over general I/O
 workloads including append-only, write-once as well as in-place update workloads.   
 The key insight behind
@@ -278,7 +278,7 @@ of applications can be automatically detected and distinguished each other in
 an LBA-{\it oblivious} fashion, an automatic stream management technique can be
 developed for widely varying I/O workloads including append-only workloads.
 
-In this paper, we argue that a program context can be used to build an
+In this dissertation, we argue that a program context can be used to build an
 efficient general-purpose classifier of dominant I/O activities with different
 data lifetimes.  Here, a PC represents an execution path of an application
 which invokes write-related system call functions such as {\tt write()} and
